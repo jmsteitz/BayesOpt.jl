@@ -14,7 +14,6 @@ end
 
 # low-level interfaces (not exported)
 let
-    @test isa(BayesOpt.initialize_parameters_to_default(), BayesOpt.bopt_params)
     n = 10
     fdata = C_NULL
     lb = ones(n) * 0
@@ -22,6 +21,7 @@ let
     xmin = similar(lb)
     fmin = similar(lb)
     params = BayesOpt.initialize_parameters_to_default()
+    @test isa(params, BayesOpt.bopt_params)
     params.verbose_level = 0
     r = BayesOpt.bayes_optimization(n, testfunc, fdata, lb, ub, xmin, fmin, params)
     @test r == 0
