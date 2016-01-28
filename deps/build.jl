@@ -19,7 +19,7 @@ provides(SimpleBuild,
               GetSources(bayesopt)
               @build_steps begin
                   ChangeDirectory(srcdir)
-                  `cmake -DCMAKE_INSTALL_PREFIX="$prefix" -DCMAKE_INSTALL_RPATH="$prefix/lib" -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON -DCMAKE_MACOSX_RPATH=ON -DBAYESOPT_BUILD_SHARED=ON -DNLOPT_BUILD_SHARED=ON`
+                  @osx ? `cmake -DCMAKE_INSTALL_PREFIX="$prefix" -DCMAKE_INSTALL_RPATH="$prefix/lib" -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON -DCMAKE_MACOSX_RPATH=ON -DBAYESOPT_BUILD_SHARED=ON -DNLOPT_BUILD_SHARED=ON` : `cmake -DCMAKE_INSTALL_PREFIX="$prefix" -DCMAKE_INSTALL_RPATH="$prefix/lib" -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON -DBAYESOPT_BUILD_SHARED=ON -DNLOPT_BUILD_SHARED=ON`
                   `make`
                   `make install`
               end

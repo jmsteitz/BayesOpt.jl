@@ -6,6 +6,8 @@ os:
 julia:
   - release
   - nightly
+before_install:
+  - if command -v apt-get >/dev/null 2>&1; then sudo apt-get -y update; sudo apt-get -y upgrade; sudo apt-get -y install libboost-all-dev cmake g++; fi
 notifications:
   email: false
 # uncomment the following lines to override the default test script
