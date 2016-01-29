@@ -29,13 +29,16 @@ let
 end
 
 # high-level interfaces (exported)
-#let
-#    n = 10
-#    x0 = rand(n)
-#    lb = ones(n) * 0
-#    ub = ones(n) * 1
-#    fmin, xmin = bayesopt(testfunc, x0, lb, ub)
-#    @show fmin xmin
-#    @test fmin < 0.1
-#    @test vecnorm(xmin - 0.53) < 0.1
-#end
+if VERSION > v"0.5-"
+    let
+        n = 10
+        x0 = rand(n)
+        lb = ones(n) * 0
+        ub = ones(n) * 1
+        fmin, xmin = bayesopt(
+        x -> vecnorm(x - .53), x0, lb, ub, n_iterations=50)
+        #@show fmin xmin
+        @test fmin < 0.1
+        @test vecnorm(xmin - 0.53) < 0.1
+    end
+end
