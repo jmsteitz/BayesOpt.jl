@@ -36,8 +36,12 @@ if VERSION > v"0.5-"
         lb = ones(n) * 0
         ub = ones(n) * 1
         fmin, xmin = bayesopt(
-        x -> vecnorm(x - .53), x0, lb, ub, n_iterations=50)
-        #@show fmin xmin
+            x -> vecnorm(x - .53),
+            x0,
+            lb,
+            ub,
+            n_iterations=100,
+            verbose_level=0)
         @test fmin < 0.1
         @test vecnorm(xmin - 0.53) < 0.1
     end
