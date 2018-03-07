@@ -21,7 +21,7 @@ function bayesopt(
         verbose_level::Integer=1)
     # wrap the function f (assumed to take an argument of Vector{Float64}) with a closure
     function f′(n, x, grad, fdata)
-        return f(pointer_to_array(x, n))
+        return f(unsafe_wrap(Array, x, n))
     end
     params = initialize_parameters_to_default()
     params.n_iterations = n_iterations
