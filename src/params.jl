@@ -92,7 +92,7 @@ for f in [
       :set_save_file,
       :set_learning,
       :set_score]
-    @eval function $f(params::bopt_params, name::ByteString)
+    @eval function $f(params::bopt_params, name::String)
         ccall(
             ($(string(f)), libbayesopt),
             Void,
